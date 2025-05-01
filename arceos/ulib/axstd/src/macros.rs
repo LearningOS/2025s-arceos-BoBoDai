@@ -16,6 +16,9 @@ macro_rules! print {
 /// Prints to the standard output, with a newline.
 #[macro_export]
 macro_rules! println {
+    ($color_code:expr, $($arg:tt)*) => {
+        $crate::io::__print_impl(format_args!("\u{1B}[{}m{}\u{1B}[m\n", $color_code as u8, format_args!($($arg)*)));
+    };
     () => { $crate::print!("\n") };
     ($($arg:tt)*) => {
         $crate::io::__print_impl(format_args!("{}\n", format_args!($($arg)*)));
