@@ -150,7 +150,7 @@ impl AllDevices {
 /// Probes and initializes all device drivers, returns the [`AllDevices`] struct.
 pub fn init_drivers() -> AllDevices {
     info!("Initialize device drivers...");
-    info!("  device model: {}", AllDevices::device_model());
+    info!("device model: {}", AllDevices::device_model());
 
     let mut all_devs = AllDevices::default();
     all_devs.probe();
