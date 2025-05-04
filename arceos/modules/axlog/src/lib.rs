@@ -74,12 +74,17 @@ macro_rules! ax_print {
 /// Prints to the console, with a newline.
 #[macro_export]
 macro_rules! ax_println {
-    ($color_code:expr, $($arg:tt)*) => {
-        $crate::__print_impl(format_args!("\u{1B}[{}m{}\u{1B}[m\n", $color_code as u8, format_args!($($arg)*)));
-    };
     () => { $crate::ax_print!("\n") };
     ($($arg:tt)*) => {
         $crate::__print_impl(format_args!("{}\n", format_args!($($arg)*)));
+    };
+}
+
+#[macro_export]
+macro_rules! ax_println_with_color {
+    () => { $crate::ax_print!("\n") };
+    ($color_code:expr, $($arg:tt)*) => {
+        $crate::__print_impl(format_args!("\u{1B}[{}m{}\u{1B}[m\n", $color_code as u8, format_args!($($arg)*)));
     };
 }
 
